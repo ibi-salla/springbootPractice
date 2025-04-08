@@ -1,9 +1,6 @@
 package com.example.springbootpractice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 // @Entity will make the sql table map the employee object
 //@id: make primary key of the table
@@ -20,12 +17,14 @@ public class Employee {
     @Column(unique=true)
     private String email;
     private String password;
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
 
 
-    public Employee(String name, int age, String email, String password, String id) {
+    public Employee(String name, int age, String email, String password, int id) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -68,11 +67,15 @@ public class Employee {
         this.password = password;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
+    //Deleted setter for security reason
+/*    public void setId(int id) {
+      this.id = id;
+   }
+
+ */
 }

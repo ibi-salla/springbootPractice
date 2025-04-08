@@ -1,10 +1,21 @@
 package com.example.springbootpractice.controller;
 
 import com.example.springbootpractice.model.Employee;
+import com.example.springbootpractice.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+// @RestController will accept only REST call (HTTP) and will return different type
+//@Controller will return HTML page name or reference only
 @RestController
+@RequestMapping(value="/v1")
+
 public class contollerPractice {
+
+
+// autowire create a reference of the bean (singleton object) that exist
+@Autowired
+public EmployeeService employeeService ;
 
     // RequestMapping then Get or POSt PUT
     @RequestMapping(value="/FirstApi",method= RequestMethod.GET)
@@ -27,6 +38,13 @@ public class contollerPractice {
     @PostMapping(value="/FourthAPI")
     public Employee method4(@RequestBody Employee employee) {
         return employee;
+    }
+
+    // Register Employee
+    @PostMapping(value="/Register")
+    public Employee method5(@RequestBody Employee employee) {
+    Employee newEmployee = employeeService.registerEmployee(employee);
+        return newEmployee;
     }
 
 
