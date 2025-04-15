@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 // JapRepository (TABLE_NAME, PRIMARY_KEY TYPE)
 public interface  EmployeeRepository extends JpaRepository<Employee,Integer> {
 
+Employee findByEmail(String email);
+
 }
 
